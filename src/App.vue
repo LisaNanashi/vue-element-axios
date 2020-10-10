@@ -1,23 +1,35 @@
 <template>
   <div id="app">
-    <router-view/>
+    <!-- <router-view/> -->
+     <keep-alive>
+      <router-view v-if="$route.meta.keepAlive">
+          <!-- 这里是会被缓存的视图组件 -->
+      </router-view>
+    </keep-alive>
+
+    <router-view v-if="!$route.meta.keepAlive">
+        <!-- 这里是不被缓存的视图组件 -->
+    </router-view>
   </div>
 </template>
 
 <script>
 import 'element-ui/lib/theme-chalk/index.css';
+import "../src/assets/common.css"
 export default {
   name: 'App'
 }
 </script>
 
 <style>
+body{
+  margin: 0;
+  height: 100%; 
+  padding: 0; 
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  min-width: 1280px;
+  margin: 0 auto;
+  background: #f5f5f5;
 }
 </style>

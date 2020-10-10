@@ -1,20 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Index = () => import('@/pages/index')
-const Detail = () => import('@/pages/detail')
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+		// 	path: '/index',
+		// 	name: 'index',
+		// 	component: resolve => (require(['@/pages/index'], resolve))
+		// },
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: resolve => (require(['@/pages/index'], resolve))
     },
     {
       path: '/detail',
       name: 'detail',
-      component: Detail
+      component: resolve => (require(['@/pages/detail'], resolve))
     }
   ]
 })
